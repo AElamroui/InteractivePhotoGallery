@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #908e8e;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #image {
+            width: 550px;
+            height: 450px;
+            margin: 20px auto;
+            border: 3px solid #555;
+            background-color: #ddd;
+            background-image: none;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        #gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        #gallery img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border: 2px solid #999;
+            border-radius: 0px;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        #gallery img:hover,
+        #gallery img:focus {
+            transform: scale(1.05);
+            border-color: #333;
+        }
+    </style>
+</head>
+
+<body onload="addTabFocus()">
+
+    <h1>Interactive Photo Gallery</h1>
+    <div id="image">Hover over or tab to an image below to display it here.</div>
+
+    <div id="gallery">
+        <img src="https://images.unsplash.com/photo-1783936093098-2daf9e8ef72e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            alt="Photo 1: replace with a description of this image"
+            onmouseover="upDate(this)" onmouseleave="undo()"
+            onfocus="upDate(this)" onblur="undo()">
+
+        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=662&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            alt="Photo 2: replace with a description of this image"
+            onmouseover="upDate(this)" onmouseleave="undo()"
+            onfocus="upDate(this)" onblur="undo()">
+
+        <img src="https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            alt="Photo 3: replace with a description of this image"
+            onmouseover="upDate(this)" onmouseleave="undo()"
+            onfocus="upDate(this)" onblur="undo()">
+
+        <img src="https://plus.unsplash.com/premium_photo-1676389281733-aaefab0e7907?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            alt="Photo 4: replace with a description of this image"
+            onmouseover="upDate(this)" onmouseleave="undo()"
+            onfocus="upDate(this)" onblur="undo()">
+
+        <img src="https://plus.unsplash.com/premium_photo-1666777247416-ee7a95235559?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D"
+            alt="Photo 5: replace with a description of this image"
+            onmouseover="upDate(this)" onmouseleave="undo()"
+            onfocus="upDate(this)" onblur="undo()">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop"
+            alt="Photo 6: replace with a description of this image"
+            onmouseover="upDate(this)" onmouseleave="undo()"
+            onfocus="upDate(this)" onblur="undo()">
+    </div>
+
+    <script>
+        function upDate(previewPic) {
+            console.log(previewPic.alt, previewPic.src);
+            document.getElementById("image").innerHTML = previewPic.alt;
+            document.getElementById("image").style.backgroundImage =
+                'url("' + previewPic.src + '")';
+        }
+
+        function undo() {
+            document.getElementById("image").style.backgroundImage = "none";
+            document.getElementById("image").innerHTML =
+                "Hover over or tab to an image below to display it here.";
+        }
+
+        function addTabFocus() {
+            console.log("addTabFocus triggered");
+
+            const images = document.querySelectorAll("#gallery img");
+
+            for (let i = 0; i < images.length; i++) {
+                images[i].setAttribute("tabindex", "0");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
